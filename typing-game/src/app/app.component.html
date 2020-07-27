@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="columns is-centered">
+    <div class="box column is-one-third">
+      <h1 class="title has-text-centered">Typing Game</h1>
+
+      <p class="has-text-centered">
+        <span
+          *ngFor="let letter of text.split(''); let i = index"
+          [class]="onCompare(letter, userInput[i])"
+          >{{ letter }}</span
+        >
+      </p>
+
+      <input
+        class="input mt-4 has-text-centered"
+        type="text"
+        (input)="onHandleInput($event.target.value)"
+        [value]="userInput"
+      />
+
+      <div class="box my-4 has-text-centered" *ngIf="userInput === text">
+        <h2>You win</h2>
+      </div>
+      <button
+        (click)="onHandleClick()"
+        class="button is-danger is-fullwidth"
+        *ngIf="userInput === text"
+      >
+        Reset
+      </button>
+    </div>
+  </div>
+</div>
