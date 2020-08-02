@@ -1,0 +1,98 @@
+<div class="container">
+  <h3>Payment Form</h3>
+  <div class="row">
+    <div class="form-group col">
+      <label for="payee">Payee Name: </label>
+      <input
+        type="text"
+        id="payee"
+        (input)="onNameChange($event.target.value)"
+        class="form-control"
+      />
+    </div>
+    <div class="col">
+      <label>
+        <strong>Payee Name: </strong>
+      </label>
+      <p>
+        {{ name | titlecase }}
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col">
+      <label for="date">Date: </label>
+      <input
+        type="date"
+        id="date"
+        (input)="onDateChange($event.target.value)"
+        class="form-control"
+      />
+    </div>
+    <div class="col">
+      <label>
+        <strong>Date: </strong>
+      </label>
+      <p>
+        {{ date | date: "E, d LLLL yyyy" }}
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col">
+      <label for="amount">Amount: </label>
+      <input
+        type="number"
+        id="amount"
+        (input)="onAmountChange($event.target.value)"
+        class="form-control"
+      />
+    </div>
+    <div class="col">
+      <label>
+        <strong>Amount: </strong>
+      </label>
+      <p>
+        {{ amount | currency: "INR" }}
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col">
+      <label for="height">Height: </label>
+      <input
+        type="number"
+        id="height"
+        (input)="onHeightChange($event.target.value)"
+        class="form-control"
+      />
+    </div>
+    <div class="col">
+      <label>
+        <strong>Height: </strong>
+      </label>
+      <p>
+        {{ height | number: "1.0-2" }}
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col">
+      <label for="distance">Miles: </label>
+      <input
+        type="number"
+        id="distance"
+        (input)="onMilesChange($event.target.value)"
+        class="form-control"
+      />
+    </div>
+    <div class="col">
+      <label>
+        <strong>Kilometers: </strong>
+      </label>
+      <p>
+        {{ miles | convert | number: "1.0-2" }}
+      </p>
+    </div>
+  </div>
+</div>
