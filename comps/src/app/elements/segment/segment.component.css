@@ -1,0 +1,4 @@
+div.ui.icon.header:empty,
+button.ui.button:empty {
+  display: none;
+}
