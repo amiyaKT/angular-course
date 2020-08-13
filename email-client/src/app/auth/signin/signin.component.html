@@ -1,0 +1,35 @@
+<h3>Sign In</h3>
+<form [formGroup]="authForm" class="ui form" (ngSubmit)="onSubmit()">
+  <app-input
+    label="Username"
+    [control]="authForm.get('username')"
+    type="text"
+  ></app-input>
+
+  <app-input
+    label="Password"
+    [control]="authForm.get('password')"
+    type="password"
+  ></app-input>
+
+  <div class="ui red basic label" *ngIf="authForm.errors">
+    <p *ngIf="authForm.errors.noConnection">
+      No Internet Connection Detected. Failed to signup.
+    </p>
+    <p *ngIf="authForm.errors.unkownError">
+      Unknown Error occured. Please try again.
+    </p>
+    <p *ngIf="authForm.errors.credentials">
+      Invalid Credentials. Please Try Again!
+    </p>
+  </div>
+  <div>
+    <button
+      type="submit"
+      class="ui submit button primary"
+      [disabled]="authForm.invalid"
+    >
+      Submit
+    </button>
+  </div>
+</form>
