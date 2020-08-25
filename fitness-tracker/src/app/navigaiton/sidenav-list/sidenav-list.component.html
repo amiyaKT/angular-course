@@ -1,0 +1,32 @@
+<mat-nav-list>
+  <ng-container *ngIf="!(isAuth$ | async)">
+    <a mat-list-item routerLink="signup" (click)="onToggleSidebar()">
+      <mat-icon>face</mat-icon>
+      <span class="sidebar-caption">
+        Signup
+      </span>
+    </a>
+    <a mat-list-item routerLink="login" (click)="onToggleSidebar()">
+      <mat-icon>input</mat-icon>
+      <span class="sidebar-caption">
+        Login
+      </span>
+    </a>
+  </ng-container>
+  <ng-container *ngIf="isAuth$ | async">
+    <a mat-list-item routerLink="training" (click)="onToggleSidebar()">
+      <mat-icon>fitness_center</mat-icon>
+      <span class="sidebar-caption">
+        Training
+      </span>
+    </a>
+    <mat-list-item (click)="onLogout()">
+      <button mat-icon-button routerLink="training">
+        <mat-icon>eject</mat-icon>
+        <span class="sidebar-caption">
+          Logout
+        </span>
+      </button>
+    </mat-list-item>
+  </ng-container>
+</mat-nav-list>

@@ -1,0 +1,77 @@
+<section>
+  <form
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="1em"
+    #form="ngForm"
+    (ngSubmit)="onSubmit(form)"
+  >
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        type="email"
+        name="email"
+        [ngModel]="email"
+        placeholder="Enter your email"
+        email
+        required
+        #emailInput="ngModel"
+      />
+      <mat-error *ngIf="emailInput.hasError('required')">
+        Email is required
+      </mat-error>
+      <mat-error *ngIf="emailInput.hasError('email')">
+        Email is invalid
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field hintLabel="Must be atleast 6 characters" appearance="fill">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        type="password"
+        name="password"
+        [ngModel]="password"
+        placeholder="Enter your password"
+        required
+        minlength="6"
+        #pswdInput="ngModel"
+      />
+      <mat-hint align="end">
+        {{ pswdInput.value ? pswdInput.value.length : 0 }}/6
+      </mat-hint>
+      <mat-error>
+        Has to be 6 charachters long.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" (click)="datepicker.open()">
+      <mat-label>Birthday</mat-label>
+      <input
+        matInput
+        [matDatepicker]="datepicker"
+        [max]="maxDate"
+        ngModel
+        name="birthday"
+        required
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="datepicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #datepicker touchUi></mat-datepicker>
+    </mat-form-field>
+    <mat-checkbox ngModel name="agree" required color="primary">
+      I Agree with Terms and Conditions.
+    </mat-checkbox>
+    <button
+      *ngIf="!(isLoading$ | async)"
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="form.invalid"
+    >
+      Submit
+    </button>
+    <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
+  </form>
+</section>

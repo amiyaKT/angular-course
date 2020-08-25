@@ -1,0 +1,44 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="onToggleSidebar()" fxHide.gt-xs>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <a class="brand" fxFlex.lt-sm fxLayoutAlign.lt-sm="flex-end" routerLink="/">
+      LOGO
+    </a>
+    <ul fxFlex fxLayout fxLayoutAlign="flex-end" fxLayoutGap="1em" fxHide.xs>
+      <ng-container *ngIf="!(isAuth$ | async)">
+        <li>
+          <a
+            mat-button
+            routerLink="signup"
+            routerLinkActive="mat-raised-button"
+          >
+            Signup
+          </a>
+        </li>
+        <li>
+          <a mat-button routerLink="login" routerLinkActive="mat-raised-button">
+            Login
+          </a>
+        </li>
+      </ng-container>
+      <ng-container *ngIf="isAuth$ | async">
+        <li>
+          <a
+            mat-button
+            routerLink="training"
+            routerLinkActive="mat-raised-button"
+          >
+            Training
+          </a>
+        </li>
+        <li>
+          <button mat-raised-button color="warn" (click)="onLogout()">
+            Logout
+          </button>
+        </li>
+      </ng-container>
+    </ul>
+  </mat-toolbar-row>
+</mat-toolbar>
